@@ -1,0 +1,21 @@
+POSTMAN CALLS-------
+
+POST - http://localhost:9090/user/oauth/token
+Authorization: UserName---oauth, Password: oAuth@123
+Body: username:admin
+      password:Admin@123
+      grant_type:password
+      
+GET: http://localhost:9090/users/user
+Headers: Authorization:Bearer bfa8cab1-15ba-42f4-b5f5-c5fa6beb21a6-------- the token value
+
+INSERT INTO oauth2.user_tab (id, username, password) VALUES (1, 'admin', 
+'$2a$10$zRtnp5VSz0HUWhyUvWAg3u77Ewul5JJFAlhKlrnU9dSvFfu6ijwym');
+commit;
+
+
+INSERT INTO oauth2.oauth_client_details(CLIENT_ID, RESOURCE_IDS, CLIENT_SECRET, SCOPE, 
+AUTHORIZED_GRANT_TYPES, AUTHORITIES, ACCESS_TOKEN_VALIDITY, REFRESH_TOKEN_VALIDITY)
+VALUES ('oauth', 'resource-server-rest-api', '$2a$10$pHyVyeJZ4xZv8W2tdpYHv.v/yz0sEDBI9PoFg/vmMOO18pPnbhAcS', 
+'read,write', 'password,authorization_code,refresh_token,implicit', 'USER', 300, 300);
+commit;
